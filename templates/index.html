@@ -2,5 +2,16 @@
 
 {% block content %}
 <h1>Записи в блоге</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias amet deserunt et magnam minus molestias, mollitia, perferendis perspiciatis quasi quidem suscipit veritatis voluptate. Dolorum maxime porro sit ut velit!</p>
+<p>Очень интересный текст!</p>
+{% for item in twits%}
+<div class="col-md6 border rounded">
+    <h2>{{item.title}}</h2>
+    <div>
+        {{item.content}}
+    </div>
+    <div>
+        Автор - {{item.user.name}}, Дата написания - {{item.created_date}}
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

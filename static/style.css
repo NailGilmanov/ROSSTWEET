@@ -15,6 +15,17 @@ nav > ul > li {
     display: block;
     height: 54px;
     padding: 10px;
+    transition: .5s;
+    border-radius: 30px;
+    margin-bottom: 5px;
+}
+
+nav > ul > li:hover {
+    background-color: #CFCFCF;
+}
+
+.icon:hover {
+    background-color: #FFF;
 }
 
 nav > ul > li > a > span {

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Записи в блоге</h1>
+<h1 class="News_name">Лента</h1>
 <p>Очень интересный текст!</p>
 {% for item in twits%}
 <div class="col-md6 border rounded">
@@ -13,5 +13,16 @@
         Автор - {{item.user.name}}, Дата написания - {{item.created_date}}
     </div>
 </div>
+{% if current_user.is_authenticated and current_user == item.user %}
+    <div>
+        <a href="/twits/{{ item.id }}" class="btn btn-warning">
+            Изменить
+        </a>
+        <a href="/twits_delete/{{ item.id }}" class="btn btn-danger">
+            Удалить
+        </a>
+    </div>
+{% endif %}
 {% endfor %}
+
 {% endblock %}

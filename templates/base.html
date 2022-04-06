@@ -7,7 +7,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='style.css', v=35)}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='style.css', v=36)}}">
     <title>{{title}}</title>
 </head>
 <body class="row justify-content-center">
@@ -19,6 +19,14 @@
             <li><a href="#"><div class="img_n"><img src="static/img/user_icon.png" alt="profile"></div><span>Профиль</span></a></li>
             <li><a href="/new_twit"><div class="img_n"><img src="static/img/write_icon.png" alt="tweet"></div><span>Твитнуть</span></a></li>
         </ul>
+        {% if current_user.is_authenticated %}
+            <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+        {% else %}
+            <p>
+                <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
+                <a class="btn btn-success" href="/login">Войти</a>
+            </p>
+        {% endif %}
     </nav>
 </header>
 <!-- Begin page content -->

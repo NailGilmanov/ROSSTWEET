@@ -24,7 +24,7 @@ class User(SqlAlchemyBase, UserMixin):
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
 
-    # проверяет, правильный ли пароль ввел пользователь, нужна для авторизации пользователей в нашем приложении.
+    # проверяет, правильный ли пароль ввел пользователь, нужна для авторизации пользователей в
+    # нашем приложении.
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
-

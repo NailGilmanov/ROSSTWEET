@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, abort, make_response, session
+from flask import Flask, render_template, redirect, request, abort, make_response, session, jsonify
 from data import db_session
 from data.users import User
 from data.twits import Twits
@@ -18,6 +18,11 @@ login_manager.init_app(app)
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 @app.route("/")

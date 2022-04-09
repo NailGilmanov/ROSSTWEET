@@ -43,3 +43,31 @@ nav > ul > li > a > span {
     display: inline-block;
 }
 
+.post {
+    padding: 10px;
+}
+
+.post-icon {
+    width: 35px;
+    position: absolute;
+}
+
+.i1 {
+    right: 60px
+}
+
+.i2 {
+    right: 30px;
+}
+
+.post-icon > .img1 {
+    width: 30px;
+}
+
+.post-icon > .img2 {
+    width: 30px;
+}
+
+.secondary {
+    color: grey;
+}

@@ -1,9 +1,11 @@
-from flask import Flask, render_template, redirect, request, abort, make_response, session, jsonify
+from flask import Flask, render_template, redirect, request, abort, make_response, session, jsonify, url_for
 from data import db_session
 from data.users import User
 from data.twits import Twits
+from data.comments import Comment
 from forms.user import RegisterForm, LoginForm
 from forms.twits import TwitsForm
+from forms.comments import CommentsForm
 
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
@@ -68,6 +70,11 @@ def login():
 @login_required
 def logout():
     logout_user()
+    return redirect("/")
+
+
+@app.route('/success')
+def success():
     return redirect("/")
 
 
@@ -143,6 +150,30 @@ def news_delete(id):
     else:
         abort(404)
     return redirect('/')
+
+
+@app.route('/comments/<int:id>', methods=['GET', 'POST'])
+@login_required
+def comments(id):
+    db_sess = db_session.create_session()
+    comments = db_sess.query(Comment).filter(Comment.twit_id == id
+                                       ).all()
+    twit = db_sess.query(Twits).filter(Twits.id == id
+                                       ).first()
+    form = CommentsForm()
+    if form.validate_on_submit():
+        comment = Comment()
+        comment.content = form.content.data
+        comment.twit_id = id
+        comment.user_id = current_user.id
+        db_sess.add(comment)
+        db_sess.commit()
+        # return render_template('comments.html', twit=twit, comments=comments, title='Обсуждение',
+        #                        form=form)
+        return redirect(f'/comments/{id}')
+    else:
+        return render_template('comments.html', twit=twit, comments=comments, title='Обсуждение',
+                               form=form)
 
 
 def main():

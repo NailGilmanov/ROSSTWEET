@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="News_name">Обсуждение</h1>
+{% if comments %}
+    {% for item in comments%}
+        <div class="col-md6 border rounded">
+            <div><h5>{{item.user.name}}</h5></div>
+            <div>
+                {{item.content}}
+            </div>
+            <div>
+                Дата написания - {{item.created_date}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+        <div><h3>Вы можете начать обсуждение первым!</h3></div>
+{% endif %}
+<h5>Новый комментарий</h5>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.content.label }}<br>
+            {{ form.content(class="form-control") }}<br>
+            {% for error in form.content.errors %}
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        {{ message }}
+    </form>
+{% endblock %}

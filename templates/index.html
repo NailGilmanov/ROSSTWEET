@@ -22,6 +22,11 @@
     <div>
         {{item.content}}
     </div>
+    {% if current_user.is_authenticated %}
+        <div><a href="/comments/{{ item.id }}" >Начать обсуждение</a></div>
+    {% else %}
+            <div><a href=/register" >Начать обсуждение</a></div>
+    {% endif %}
 </div>
 {% endfor %}
 

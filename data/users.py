@@ -19,6 +19,7 @@ class User(SqlAlchemyBase, UserMixin):
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
     news = orm.relation('Twits', back_populates='user')
+    commentaries = orm.relation('Comment', back_populates='user')
 
     # устанавливает значение хэша пароля для переданной строки, нужна для регистрации пользователя
     def set_password(self, password):

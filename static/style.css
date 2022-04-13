@@ -1,3 +1,8 @@
+body {
+    background: #d1d1d176;
+    padding: 20px;
+}
+
 nav {
     width: 200px;
     height: auto;
@@ -70,4 +75,29 @@ nav > ul > li > a > span {
 
 .secondary {
     color: grey;
+}
+
+.white_box {
+    background: #fff;
+    border-radius: 5%;
+}
+
+.main {
+    height: 100%;
+    padding: 20px;
+}
+
+ul {
+    padding: 10px;
+}
+
+.message-pic {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.message-div > a {
+    font-size: 21px;
+    color: black;
+    text-decoration: none;
 }

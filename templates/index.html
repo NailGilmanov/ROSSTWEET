@@ -21,13 +21,13 @@
     <h2>{{item.title}}</h2>
     <div>
         {{item.content}}
-    </div>
+    </div><hr>
     {% if current_user.is_authenticated %}
-        <div><a href="/comments/{{ item.id }}" >Начать обсуждение</a></div>
+        <div class="message-div"><a href="/comments/{{ item.id }}"><img class="message-pic" src="https://sun9-46.userapi.com/impg/jVBHIXG9w5CqvVn_M3U3WzN0M3MC-OmaB5pNBg/3A6Ni9wc-eE.jpg?size=512x512&quality=95&sign=2588ec5f5c49c4a3c0c491f16b3478ef&type=album" alt="message">Комментарии</a></div>
     {% else %}
-            <div><a href=/register" >Начать обсуждение</a></div>
+        <div class="message-div"><a href="/register"><img class="message-pic" src="https://sun9-46.userapi.com/impg/jVBHIXG9w5CqvVn_M3U3WzN0M3MC-OmaB5pNBg/3A6Ni9wc-eE.jpg?size=512x512&quality=95&sign=2588ec5f5c49c4a3c0c491f16b3478ef&type=album" alt="message">Комментарии</a></div>
     {% endif %}
-</div>
+</div><br>
 {% endfor %}
 
 {% endblock %}

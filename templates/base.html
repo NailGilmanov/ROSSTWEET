@@ -7,34 +7,36 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='style.css', v=59)}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='style.css', v=82)}}">
     <title>{{title}}</title>
 </head>
 <body class="row justify-content-center">
 <header class="col-2">
-    <nav>
+    <nav class="white_box">
         <ul>
-            <li class="icon"><a href="/"><div class="img_n"><img src="static/img/tweet_icon3.png" alt="icon"></div></a></li>
-            <li><a href="/"><div class="img_n"><img src="static/img/home_icon.png" alt="home"></div><span>Главная</span></a></li>
+            <li class="icon"><a href="/"><div class="img_n"><img src="https://psv4.userapi.com/c537232/u522542780/docs/d34/c1c9855bf761/tweet_icon3.png?extra=wufMOliZM_eLcGEhz1pmCsliotys0C8anw35tHs7SqnaiRz-69dq45eeU0tsd8vIaw-Fixw-ui2Clvj1_GBM2QlHFy5fWHH-8DA8P0U8nSQv7NZTYsYYp-sE3MR9UqWlKyQq0L0urPDI1pFfrEOmzpsj4A" alt="icon"></div></a></li>
+            <li><a href="/"><div class="img_n"><img src="https://psv4.userapi.com/c537232/u522542780/docs/d24/b6cb71d53c25/home_icon.png?extra=A-K8ZWFDY33BHZ6-ckrmbvwF8ArSpxFg4hmr6S3xblcVeDIUkBHYwDTGRK7Z6T_6f6ZM8jrkcrJHY6M_C5B7bCAM75jTBvp-d1HQiNlRsA8f0aSusYm_yqp2W4ExjMJZ0t4fi6cX6qiWxCrh2OYG13KqjQ" alt="home"></div><span>Главная</span></a></li>
             {% if current_user.is_authenticated %}
-                <li><a href="#"><div class="img_n"><img src="static/img/user_icon.png" alt="profile"></div><span>Профиль</span></a></li>
+                <li><a href="#"><div class="img_n"><img src="https://psv4.userapi.com/c537232/u522542780/docs/d9/6921225b4a24/user_icon.png?extra=iTb6inqc6A94fre5OYUMSzAO_DUXJqmKiaLNUmI6Zq-6YWD6Hq4iEa3Be5xUCdPHWAZrpz0wZXWzO-YDNG8Qg4TI9Knlutnt1B1wxt18yU7vJ_-ajab4D9NaPhkX-O_WttZ8H3V-eeaS2igmxcWrBbl6kQ" alt="profile"></div><span>Профиль</span></a></li>
             {% else %}
-                <li><a href="/register"><div class="img_n"><img src="static/img/user_icon.png" alt="profile"></div><span>Профиль</span></a></li>
+                <li><a href="/register"><div class="img_n"><img src="https://psv4.userapi.com/c537232/u522542780/docs/d9/6921225b4a24/user_icon.png?extra=iTb6inqc6A94fre5OYUMSzAO_DUXJqmKiaLNUmI6Zq-6YWD6Hq4iEa3Be5xUCdPHWAZrpz0wZXWzO-YDNG8Qg4TI9Knlutnt1B1wxt18yU7vJ_-ajab4D9NaPhkX-O_WttZ8H3V-eeaS2igmxcWrBbl6kQ" alt="profile"></div><span>Профиль</span></a></li>
             {% endif %}
-            <li><a href="/new_twit"><div class="img_n"><img src="static/img/write_icon.png" alt="tweet"></div><span>Твитнуть</span></a></li>
+            <li><a href="/new_twit"><div class="img_n"><img src="https://psv4.userapi.com/c537232/u522542780/docs/d49/78dcdc518cee/write_icon.png?extra=gXTE9kY9EnG14ROJHFIik9MXWkTF0yTaSE5YTC3Vm-ZpSBcGwLNyImXJPo4K5WeAuD0VJ5yFOp6zzw8fjDbyztSXK7zyccBt33jToCn-YId47a4WSHeR9fRazoNisKr78p8NU7mYfNdQMrq13NfDL94Ndw" alt="tweet"></div><span>Твитнуть</span></a></li>
+            <li class="icon">
+                {% if current_user.is_authenticated %}
+                    <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+                {% else %}
+                    <p>
+                        <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
+                        <a class="btn btn-success" href="/login">Войти</a>
+                    </p>
+                {% endif %}
+            </li>
         </ul>
-        {% if current_user.is_authenticated %}
-            <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
-        {% else %}
-            <p>
-                <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
-                <a class="btn btn-success" href="/login">Войти</a>
-            </p>
-        {% endif %}
     </nav>
 </header>
 <!-- Begin page content -->
-<main role="main" class="col-4">
+<main role="main" class="col-4 white_box main">
     {% block content %}{% endblock %}
 </main>
 </body>

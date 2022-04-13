@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="News_name">Обсуждение</h1>
+<h1 class="text-center ">Обсуждение</h1>
+<div class="col-md6 border rounded">
+    <h3 class="text-monospace">{{twit.title}}</h3>
+    <p class="font-italic">{{twit.content}}</p>
+</div>
 {% if comments %}
     {% for item in comments%}
         <div class="col-md6 border rounded">

@@ -168,8 +168,6 @@ def comments(id):
         comment.user_id = current_user.id
         db_sess.add(comment)
         db_sess.commit()
-        # return render_template('comments.html', twit=twit, comments=comments, title='Обсуждение',
-        #                        form=form)
         return redirect(f'/comments/{id}')
     else:
         return render_template('comments.html', twit=twit, comments=comments, title='Обсуждение',

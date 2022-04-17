@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1 class="News_name">Лента</h1>
-<p>Очень интересный текст!</p>
+<p>Сегодня отличный день, что бы написать что-нибудь новенькое!</p>
 {% for item in twits%}
 <div class="post col-md6 border rounded">
     {% if current_user.is_authenticated and current_user == item.user %}

@@ -9,6 +9,9 @@ from forms.comments import CommentsForm
 
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
+from data import db_session, twits_api
+
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'rosstweet_secret_key'
 
@@ -105,7 +108,7 @@ def reqister():
 
 @app.route('/twits/<int:id>', methods=['GET', 'POST'])
 @login_required
-def edit_news(id):
+def edit_twit(id):
     form = TwitsForm()
     if request.method == "GET":
         db_sess = db_session.create_session()
@@ -139,7 +142,7 @@ def edit_news(id):
 
 @app.route('/twits_delete/<int:id>', methods=['GET', 'POST'])
 @login_required
-def news_delete(id):
+def twit_delete(id):
     db_sess = db_session.create_session()
     twit = db_sess.query(Twits).filter(Twits.id == id,
                                       Twits.user == current_user
@@ -182,8 +185,58 @@ def comments(id):
                                form=form)
 
 
+@app.route('/comments_delete/<int:twit_id>/<int:comment_id>', methods=['GET', 'POST'])
+@login_required
+def comment_delete(comment_id, twit_id):
+    db_sess = db_session.create_session()
+    comment = db_sess.query(Comment).filter(Comment.twit_id == twit_id,
+                                            Comment.id == comment_id,
+                                            Comment.user == current_user
+                                            ).first()
+    if comment:
+        db_sess.delete(comment)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect(f'/comments/{twit_id}')
+
+
+@app.route('/comments_editing/<int:twit_id>/<int:comment_id>', methods=['GET', 'POST'])
+@login_required
+def edit_comment(comment_id, twit_id):
+    form = CommentsForm()
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        comment = db_sess.query(Comment).filter(Comment.twit_id == twit_id,
+                                               Comment.id == comment_id,
+                                               Comment.user == current_user
+                                               ).first()
+        if comment:
+            form.content.data = comment.content
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        comment = db_sess.query(Comment).filter(Comment.twit_id == twit_id,
+                                               Comment.id == comment_id,
+                                               Comment.user == current_user
+                                               ).first()
+        if comment:
+            comment.content = form.content.data
+            db_sess.commit()
+            return redirect(f'/comments/{twit_id}')
+        else:
+            abort(404)
+    return render_template('comment_editing.html',
+                           title='Редактирование комментрария',
+                           form=form
+                           )
+
+
+
 def main():
     db_session.global_init('db/twitter.sqlite')
+    app.register_blueprint(twits_api.blueprint)
     app.run()
 
 

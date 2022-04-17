@@ -9,6 +9,16 @@
 {% if comments %}
     {% for item in comments%}
         <div class="col-md6 border rounded">
+            {% if current_user.is_authenticated and current_user == item.user %}
+            <div>
+                <a href="/comments_editing/{{item.twit_id}}/{{item.id}}" class="btn post-icon i1">
+                    <img class='img1' src="static/img/edit.png" alt="edit">
+                </a>
+                <a href="/comments_delete/{{item.twit_id}}/{{item.id}}" class="btn post-icon i2">
+                    <img class='img2' src="static/img/delete.png" alt="delete">
+                </a>
+        </div>
+        {% endif %}
             <div><h5>{{item.user.name}}</h5></div>
             <div>
                 {{item.content}}

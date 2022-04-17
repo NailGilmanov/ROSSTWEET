@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, abort, make_response, session, jsonify, url_for
-from data import db_session
+from data import db_session, twits_resources, comments_resources
 from data.users import User
 from data.twits import Twits
 from data.comments import Comment
@@ -9,11 +9,23 @@ from forms.comments import CommentsForm
 
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
+from flask_restful import reqparse, abort, Api, Resource
+
 from data import db_session, twits_api
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'rosstweet_secret_key'
+api = Api(app)
+
+# для списка объектов
+api.add_resource(twits_resources.TwitsListResource, '/api/v2/twits')
+api.add_resource(comments_resources.CommentsListResource, '/api/v2/comments/<int:twit_id>')
+
+# для одного объекта
+api.add_resource(twits_resources.TwitResource, '/api/v2/twits/<int:twit_id>')
+api.add_resource(twits_resources.TwitResource, '/api/v2/comments/<int:twit_id>/<int:twit_id>')
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)

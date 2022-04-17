@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div><h3>{{twits[0].user.name}}</h3></div>
 {% if twits %}
+    <div><h3>{{twits[0].user.name}}</h3></div>
     {% for item in twits%}
         <div class="col-md6 border rounded">
             <div>

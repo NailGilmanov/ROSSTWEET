@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div><h3>{{twits[0].user.name}}</h3></div>
+{% if twits %}
+    {% for item in twits%}
+        <div class="col-md6 border rounded">
+            <div>
+                {{item.content}}
+            </div>
+            <div>
+                Дата написания - {{item.created_date}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+        <div><h3 style="text-align: center">У вас еще нет ни одного твита.</h3></div><br><br>
+        <div>
+            <img
+                style="width: 60%; margin-left: 20%;"
+                src="https://psv4.userapi.com/c235031/u522542780/docs/d5/d63847f99fe6/open-box.png?extra=O_YgQa3Lj4S_XDhWYEhIRikO_tdonwqY5n1ccmOiILVY-XjsNCGHRge64ktz5OsUFlTaOojkMowoX3B0lRprTaWvHzGhVMA79J97WT4vjR78slQ_mQRf1F2CWalf9mtt0ZOEIimRgmaGNvULR8CaIXzE"
+                alt="empty-box">
+        </div>
+{% endif %}
+{% endblock %}

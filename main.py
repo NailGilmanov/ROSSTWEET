@@ -152,6 +152,14 @@ def news_delete(id):
     return redirect('/')
 
 
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    db_sess = db_session.create_session()
+    twits = db_sess.query(Twits).filter(Twits.user_id == current_user.id).all()
+    return render_template('profile.html', twits=twits)
+
+
 @app.route('/comments/<int:id>', methods=['GET', 'POST'])
 @login_required
 def comments(id):

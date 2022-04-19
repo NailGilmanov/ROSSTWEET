@@ -22,11 +22,6 @@ api = Api(app)
 api.add_resource(twits_resources.TwitsListResource, '/api/v2/twits')
 api.add_resource(comments_resources.CommentsListResource, '/api/v2/comments/<int:twit_id>')
 
-# для одного объекта
-api.add_resource(twits_resources.TwitResource, '/api/v2/twits/<int:twit_id>')
-api.add_resource(twits_resources.TwitResource, '/api/v2/comments/<int:twit_id>/<int:twit_id>')
-
-
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -243,7 +238,6 @@ def edit_comment(comment_id, twit_id):
                            title='Редактирование комментрария',
                            form=form
                            )
-
 
 
 def main():

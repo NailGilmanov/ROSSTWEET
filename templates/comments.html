@@ -12,10 +12,10 @@
             {% if current_user.is_authenticated and current_user == item.user %}
             <div>
                 <a href="/comments_editing/{{item.twit_id}}/{{item.id}}" class="btn post-icon i1">
-                    <img class='img1' src="https://psv4.userapi.com/c537232/u522542780/docs/d50/50be944d8409/edit.png?extra=53OtFoaqnEpGcXr58Z5sEyutIJemsmniHrWzhOF5fggaZdxfGLrlzAgUcH3hTPeiDYOv8JthwsdLkPvl04EPGpmwP3YvvFLYHV1jgktcv2x7uCPqFRYh2OqObcMzY2L1-3aHBDmAPSGJ5G__gE3gK5ju" alt="edit">
+                    <img class='img1' src="../static/img/edit.png" alt="edit">
                 </a>
                 <a href="/comments_delete/{{item.twit_id}}/{{item.id}}" class="btn post-icon i2">
-                    <img class='img2' src="https://psv4.userapi.com/c537232/u522542780/docs/d34/0cb392da8d1d/delete.png?extra=xt0G8PspfALx6iIILyxffD7u46bN662YsX7Tr-r1GIzPl6wMwnDwJWnrvr9c1SvGS9tPFDHTQaQ8Y1wCUqG_wWKwg-fkX5qC3Xnt-VyLP0o4_UxqW035hfYlyMJvdKwHFZr-v7HXn9bW2PYr8vKFyUyx" alt="delete">
+                    <img class='img2' src="../static/img/delete.png" alt="delete">
                 </a>
         </div>
         {% endif %}

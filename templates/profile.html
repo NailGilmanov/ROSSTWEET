@@ -28,9 +28,9 @@
                 {{item.content}}
             </div><hr>
             {% if current_user.is_authenticated %}
-                <div class="message-div"><a href="/comments/{{ item.id }}"><img class="message-pic" src="https://sun9-46.userapi.com/impg/jVBHIXG9w5CqvVn_M3U3WzN0M3MC-OmaB5pNBg/3A6Ni9wc-eE.jpg?size=512x512&quality=95&sign=2588ec5f5c49c4a3c0c491f16b3478ef&type=album" alt="message">Комментарии</a></div>
+                <div class="message-div"><a href="/comments/{{ item.id }}"><img class="message-pic" src="../../static/img/chat-bubble.png" alt="message">Комментарии</a></div>
             {% else %}
-                <div class="message-div"><a href="/register"><img class="message-pic" src="https://sun9-46.userapi.com/impg/jVBHIXG9w5CqvVn_M3U3WzN0M3MC-OmaB5pNBg/3A6Ni9wc-eE.jpg?size=512x512&quality=95&sign=2588ec5f5c49c4a3c0c491f16b3478ef&type=album" alt="message">Комментарии</a></div>
+                <div class="message-div"><a href="/register"><img class="message-pic" src="../../static/img/chat-bubble.png" alt="message">Комментарии</a></div>
             {% endif %}
         </div><br>
     {% endfor %}
@@ -39,7 +39,7 @@
         <div>
             <img
                 style="width: 60%; margin-left: 20%;"
-                src="https://psv4.userapi.com/c235031/u522542780/docs/d5/d63847f99fe6/open-box.png?extra=O_YgQa3Lj4S_XDhWYEhIRikO_tdonwqY5n1ccmOiILVY-XjsNCGHRge64ktz5OsUFlTaOojkMowoX3B0lRprTaWvHzGhVMA79J97WT4vjR78slQ_mQRf1F2CWalf9mtt0ZOEIimRgmaGNvULR8CaIXzE"
+                src="../../static/img/open-box.png"
                 alt="empty-box">
         </div>
 {% endif %}

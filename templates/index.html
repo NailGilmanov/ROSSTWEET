@@ -1,1 +1,33 @@
 {% extends "base.html" %}
+
+{% block content %}
+<h1 class="News_name">Лента</h1>
+<p>Сегодня отличный день, чтобы написать что-нибудь новенькое!</p>
+{% for item in twits%}
+<div class="post col-md6 border rounded">
+    {% if current_user.is_authenticated and current_user == item.user %}
+        <div>
+            <a href="/twits/{{ item.id }}" class="btn post-icon i1">
+                <img class='img1' src="static/img/edit.png" alt="edit">
+            </a>
+            <a href="/twits_delete/{{ item.id }}" class="btn post-icon i2">
+                <img class='img2' src="static/img/delete.png" alt="delete">
+            </a>
+        </div>
+    {% endif %}
+    <div>
+        <b>{{item.user.name}}</b> <i class="secondary fw-light">{{item.created_date.date()}}</i>
+    </div>
+    <h2>{{item.title}}</h2>
+    <div>
+        {{item.content}}
+    </div><hr>
+    {% if current_user.is_authenticated %}
+        <div class="message-div"><a href="/comments/{{ item.id }}"><img class="message-pic" src="../../static/img/chat-bubble.png" alt="message">Комментарии</a></div>
+    {% else %}
+        <div class="message-div"><a href="/register"><img class="message-pic" src="../../static/img/chat-bubble.png" alt="message">Комментарии</a></div>
+    {% endif %}
+</div><br>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if twits %}
+    <div>
+        <img src="../static/img/user_pic.png" style="width: 80px; margin-right: 10px;" alt="profile_pic">
+        <div style="display: inline-block">
+            <h2 style="display: inline-block; margin-bottom: 0; margin-top: 5px;">{{twits[0].user.name}}</h2>
+            <p>{{twits[0].user.about}}</p>
+        </div>
+    </div>
+    <br>
+    {% for item in twits%}
+        <div class="post col-md6 border rounded">
+            <div>
+                <a href="/twits/{{ item.id }}" class="btn post-icon i1">
+                    <img class='img1' src="static/img/edit.png" alt="edit">
+                </a>
+                <a href="/twits_delete/{{ item.id }}" class="btn post-icon i2">
+                    <img class='img2' src="../static/img/delete.png" alt="delete">
+                </a>
+            </div>
+            <div>
+                <b>{{item.user.name}}</b> <i class="secondary fw-light">{{item.created_date.date()}}</i>
+            </div>
+            <h2>{{item.title}}</h2>
+            <div>
+                {{item.content}}
+            </div><hr>
+            {% if current_user.is_authenticated %}
+                <div class="message-div"><a href="/comments/{{ item.id }}"><img class="message-pic" src="../../static/img/chat-bubble.png" alt="message">Комментарии</a></div>
+            {% else %}
+                <div class="message-div"><a href="/register"><img class="message-pic" src="../../static/img/chat-bubble.png" alt="message">Комментарии</a></div>
+            {% endif %}
+        </div><br>
+    {% endfor %}
+{% else %}
+        <div><h3 style="text-align: center">У вас еще нет ни одного твита.</h3></div><br><br>
+        <div>
+            <img
+                style="width: 60%; margin-left: 20%;"
+                src="../../static/img/open-box.png"
+                alt="empty-box">
+        </div>
+{% endif %}
+{% endblock %}

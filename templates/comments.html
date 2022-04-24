@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center ">Обсуждение</h1>
+<div class="col-md6 border rounded">
+    <h3 class="text-monospace">{{twit.title}}</h3>
+    <p class="font-italic">{{twit.content}}</p>
+</div><br><br>
+{% if comments %}
+    {% for item in comments%}
+        <div class="col-md6 border rounded">
+            {% if current_user.is_authenticated and current_user == item.user %}
+            <div>
+                <a href="/comments_editing/{{item.twit_id}}/{{item.id}}" class="btn post-icon i1">
+                    <img class='img1' src="../static/img/edit.png" alt="edit">
+                </a>
+                <a href="/comments_delete/{{item.twit_id}}/{{item.id}}" class="btn post-icon i2">
+                    <img class='img2' src="../static/img/delete.png" alt="delete">
+                </a>
+        </div>
+        {% endif %}
+            <div><h5>{{item.user.name}}</h5></div>
+            <div>
+                {{item.content}}
+            </div>
+            <div>
+                Дата написания - {{item.created_date.date()}} {{item.created_date.hour}}:{{item.created_date.minute}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+        <div><h3>Вы можете начать обсуждение первым!</h3></div>
+{% endif %}
+<h5>Новый комментарий</h5>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.content.label }}<br>
+            {{ form.content(class="form-control") }}<br>
+            {% for error in form.content.errors %}
+                <p content="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        {{ message }}
+    </form>
+{% endblock %}

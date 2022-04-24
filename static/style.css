@@ -1,0 +1,103 @@
+body {
+    background: #d1d1d176;
+    padding: 20px;
+}
+
+nav {
+    width: 200px;
+    height: auto;
+    position: fixed;
+    z-index: 5;
+}
+
+nav > ul {
+    display: block;
+    list-style: none;
+    position: relative;
+}
+
+nav > ul > li {
+    display: block;
+    height: 54px;
+    padding: 10px;
+    transition: .5s;
+    border-radius: 30px;
+    margin-bottom: 5px;
+}
+
+nav > ul > li:hover {
+    background-color: #CFCFCF;
+}
+
+.icon:hover {
+    background-color: #FFF;
+}
+
+nav > ul > li > a > span {
+    margin-left: 15px;
+    color: black;
+    font-size: 20px;
+}
+
+.img_n {
+    display: inline-block;
+}
+
+.img_n > img {
+    width: 30px;
+    display: inline-block;
+}
+
+.post {
+    padding: 10px;
+}
+
+.post-icon {
+    width: 35px;
+    position: absolute;
+}
+
+.i1 {
+    right: 60px
+}
+
+.i2 {
+    right: 30px;
+}
+
+.post-icon > .img1 {
+    width: 30px;
+}
+
+.post-icon > .img2 {
+    width: 30px;
+}
+
+.secondary {
+    color: grey;
+}
+
+.white_box {
+    background: #fff;
+    border-radius: 5%;
+}
+
+.main {
+    min-height: 60vh;
+    padding: 20px;
+}
+
+ul {
+    padding: 10px;
+}
+
+.message-pic {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.message-div > a {
+    font-size: 21px;
+    color: black;
+    text-decoration: none;
+}

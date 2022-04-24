@@ -7,6 +7,8 @@ from forms.user import RegisterForm, LoginForm
 from forms.twits import TwitsForm
 from forms.comments import CommentsForm
 
+from waitress import serve
+
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from flask_restful import reqparse, abort, Api, Resource
@@ -243,7 +245,7 @@ def edit_comment(comment_id, twit_id):
 def main():
     db_session.global_init('db/twitter.sqlite')
     app.register_blueprint(twits_api.blueprint)
-    app.run()
+    serve(app, host='0.0.0.0', port=5000)
 
 
 if __name__ == '__main__':
